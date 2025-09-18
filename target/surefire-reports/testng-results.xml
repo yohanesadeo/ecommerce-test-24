@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-09-18T21:54:21 WIB" name="eCommerce Suite Test" finished-at="2025-09-18T21:54:24 WIB" duration-ms="3144">
+    <groups>
+    </groups>
+    <test started-at="2025-09-18T21:54:21 WIB" name="Authentication Test" finished-at="2025-09-18T21:54:24 WIB" duration-ms="3144">
+      <class name="com.juaracoding.ecommerce.authentications.SignInNegativeTest">
+        <test-method signature="EmptyPasswordTest()[pri:0, instance:com.juaracoding.ecommerce.authentications.SignInNegativeTest@57c758ac]" started-at="2025-09-18T21:54:21 WIB" name="EmptyPasswordTest" finished-at="2025-09-18T21:54:22 WIB" duration-ms="1211" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- EmptyPasswordTest -->
+        <test-method signature="EmptyUsernameTest()[pri:0, instance:com.juaracoding.ecommerce.authentications.SignInNegativeTest@57c758ac]" started-at="2025-09-18T21:54:22 WIB" name="EmptyUsernameTest" finished-at="2025-09-18T21:54:23 WIB" duration-ms="969" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- EmptyUsernameTest -->
+        <test-method signature="withoutCredentialsTest()[pri:0, instance:com.juaracoding.ecommerce.authentications.SignInNegativeTest@57c758ac]" started-at="2025-09-18T21:54:23 WIB" name="withoutCredentialsTest" finished-at="2025-09-18T21:54:24 WIB" duration-ms="941" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- withoutCredentialsTest -->
+      </class> <!-- com.juaracoding.ecommerce.authentications.SignInNegativeTest -->
+    </test> <!-- Authentication Test -->
+  </suite> <!-- eCommerce Suite Test -->
+</testng-results>
