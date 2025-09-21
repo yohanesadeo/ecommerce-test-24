@@ -1,56 +1,64 @@
 package com.juaracoding.ecommerce.authentications;
-
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import com.juaracoding.ecommerce.BaseTest;
 
-public class SignInTest {
-    private WebDriver driver;
-
-    @BeforeClass
-    public void setUp() {
-        System.out.println("Setup Test Class");
-        driver = new ChromeDriver();
-    }
-    
-    @Test
-    public void testBrowser() {
-        driver.get("https://www.saucedemo.com/v1/"); 
-        String actualTitle = driver.getTitle();
-        String expectedTitle = "Swag Labs";
-        Assert.assertEquals(actualTitle, expectedTitle, "Title should be Swag Labs");  
-    }
+public class SignInTest extends BaseTest {
 
     @Test
-    public void testLogin() throws InterruptedException {
-        driver.get("https://www.saucedemo.com/v1/"); 
-        WebElement usernameField = driver.findElement( 
-            org.openqa.selenium.By.id("user-name"));
-        WebElement passwordField = driver.findElement(
-            org.openqa.selenium.By.id("password"));
-        WebElement loginButton = driver.findElement(
-            org.openqa.selenium.By.id("login-button"));
-            
-        usernameField.sendKeys("standard_user");
-        Thread.sleep(2000);
-        passwordField.sendKeys("secret_sauce");
-        Thread.sleep(2000);
+    public void withoutCredentialsTest() {
+
+        WebElement loginButton = getDriver().findElement(
+                org.openqa.selenium.By.id("login-button"));
         loginButton.click();
-        Thread.sleep(2000);
 
-        String actualURL = driver.getCurrentUrl();
-        String expectedURL = "https://www.saucedemo.com/v1/inventory.html";
-        Assert.assertEquals(actualURL, expectedURL, "URL should be inventory page");
+        WebElement errorMessage = getDriver().findElement(
+                org.openqa.selenium.By.cssSelector("h3[data-test='error']"));
+        String actualString = errorMessage.getText();
+        String expectedErrorMessage = "Epic sadface: Username is required";
+
+        Assert.assertEquals(actualString, expectedErrorMessage);
+
+        getDriver().quit();
     }
-            
 
-    @AfterClass
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(4000);
-        driver.quit();
+    @Test
+    public void EmptyPasswordTest() {
+
+        WebElement usernameField = getDriver().findElement(
+                org.openqa.selenium.By.id("user-name"));
+        WebElement loginButton = getDriver().findElement(
+                org.openqa.selenium.By.id("login-button"));
+
+        usernameField.sendKeys("standard_user");
+        loginButton.click();
+
+        WebElement errorMessage = getDriver().findElement(
+                org.openqa.selenium.By.cssSelector("h3[data-test='error']"));
+        String actualString = errorMessage.getText();
+        String expectedErrorMessage = "Epic sadface: Password is required";
+
+        Assert.assertEquals(actualString, expectedErrorMessage);
+        getDriver().quit();
+    }
+
+    @Test
+    public void EmptyUsernameTest() {
+        WebElement passwordField = getDriver().findElement(
+                org.openqa.selenium.By.id("password"));
+        WebElement loginButton = getDriver().findElement(
+                org.openqa.selenium.By.id("login-button"));
+
+        passwordField.sendKeys("secret_sauce");
+        loginButton.click();
+
+        WebElement errorMessage = getDriver().findElement(
+                org.openqa.selenium.By.cssSelector("h3[data-test='error']"));
+        String actualString = errorMessage.getText();
+        String expectedErrorMessage = "Epic sadface: Username is required";
+
+        Assert.assertEquals(actualString, expectedErrorMessage);
+        getDriver().quit();
     }
 }
