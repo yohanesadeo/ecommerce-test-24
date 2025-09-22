@@ -8,14 +8,12 @@ public class DriverService {
     public static final String CHROME = "chrome";
     public static final String FIREFOX = "firefox";
 
-    private WebDriver driver;
-
     public WebDriver getDriverChrome() {
-        return driver = new ChromeDriver();
+        return new ChromeDriver();
     }
 
     public WebDriver getDriverFirefox() {
-        return driver = new FirefoxDriver();
+        return new FirefoxDriver();
     }
   
     public static WebDriver driverManager(String driverType) {

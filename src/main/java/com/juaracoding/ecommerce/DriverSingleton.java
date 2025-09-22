@@ -7,8 +7,7 @@ public class DriverSingleton {
 
     public static WebDriver driverManager(String driverType) {
         if (driver == null) {
-            DriverService driverService = new DriverService();
-            driver = driverService.driverManager(driverType);
+            driver = DriverService.driverManager(driverType);
         }
         return driver;
     }
