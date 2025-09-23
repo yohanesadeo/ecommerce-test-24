@@ -1,64 +1,60 @@
 package com.juaracoding.ecommerce.authentications;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.juaracoding.ecommerce.BaseTest;
+import com.juaracoding.ecommerce.pages.LoginPage;
+import com.juaracoding.ecommerce.pages.SignInPage;
 
 public class SignInTest extends BaseTest {
 
     @Test
     public void withoutCredentialsTest() {
+        SignInPage signInPage = new SignInPage(getDriver());
+        signInPage.clickLoginButton();
 
-        WebElement loginButton = getDriver().findElement(
-                org.openqa.selenium.By.id("login-button"));
-        loginButton.click();
-
-        WebElement errorMessage = getDriver().findElement(
-                org.openqa.selenium.By.cssSelector("h3[data-test='error']"));
-        String actualString = errorMessage.getText();
         String expectedErrorMessage = "Epic sadface: Username is required";
 
-        Assert.assertEquals(actualString, expectedErrorMessage);
+        Assert.assertEquals(signInPage.getErrorMessage(), expectedErrorMessage);
 
         getDriver().quit();
     }
 
     @Test
     public void EmptyPasswordTest() {
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.fillUsername("standard_user");
+        loginPage.clickLoginButton();
 
-        WebElement usernameField = getDriver().findElement(
-                org.openqa.selenium.By.id("user-name"));
-        WebElement loginButton = getDriver().findElement(
-                org.openqa.selenium.By.id("login-button"));
-
-        usernameField.sendKeys("standard_user");
-        loginButton.click();
-
-        WebElement errorMessage = getDriver().findElement(
-                org.openqa.selenium.By.cssSelector("h3[data-test='error']"));
-        String actualString = errorMessage.getText();
         String expectedErrorMessage = "Epic sadface: Password is required";
 
-        Assert.assertEquals(actualString, expectedErrorMessage);
+        Assert.assertEquals(loginPage.getErrorMessage(), expectedErrorMessage);
         getDriver().quit();
     }
 
     @Test
     public void EmptyUsernameTest() {
-        WebElement passwordField = getDriver().findElement(
-                org.openqa.selenium.By.id("password"));
-        WebElement loginButton = getDriver().findElement(
-                org.openqa.selenium.By.id("login-button"));
+        LoginPage loginPage = new LoginPage(getDriver());
 
-        passwordField.sendKeys("secret_sauce");
-        loginButton.click();
+        loginPage.fillPassword("secret_sauce");
+        loginPage.clickLoginButton();
 
-        WebElement errorMessage = getDriver().findElement(
-                org.openqa.selenium.By.cssSelector("h3[data-test='error']"));
-        String actualString = errorMessage.getText();
         String expectedErrorMessage = "Epic sadface: Username is required";
 
-        Assert.assertEquals(actualString, expectedErrorMessage);
+        Assert.assertEquals(loginPage.getErrorMessage(), expectedErrorMessage);
+        getDriver().quit();
+    }
+
+    @Test
+    public void validUsernameAndPasswordTest() {
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.fillUsername("standard_user");
+        loginPage.fillPassword("secret_sauce");
+        loginPage.clickLoginButton();
+
+        String actualURL = getDriver().getCurrentUrl();
+        String expectedURL = "https://www.saucedemo.com/v1/inventory.html";
+
+        Assert.assertEquals(actualURL, expectedURL);
         getDriver().quit();
     }
 }
