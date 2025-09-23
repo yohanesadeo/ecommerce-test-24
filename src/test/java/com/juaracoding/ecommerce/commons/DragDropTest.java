@@ -3,8 +3,6 @@ package com.juaracoding.ecommerce.commons;
 import com.juaracoding.ecommerce.BaseTest;
 import com.juaracoding.ecommerce.pages.DragDropPage;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

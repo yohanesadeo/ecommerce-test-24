@@ -5,11 +5,10 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
     // Locator
-    private By username = By.id("user-name");
-    private By password = By.id("password");
-    private By btnLogin = By.id("login-button");
-    private By errorMessage = By.cssSelector("h3[data-test='error']");
-
+    private By username = By.xpath("//input[@id='user-name']");
+    private By password = By.xpath("//input[@id='password']");
+    private By btnLogin = By.xpath("//input[@id='login-button']");
+    private By errorMessage = By.xpath("//h3[@data-test='error']");
     private WebDriver driver;
 
     public LoginPage(WebDriver driver) {
