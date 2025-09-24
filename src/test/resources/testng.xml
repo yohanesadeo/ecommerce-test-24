@@ -3,8 +3,8 @@
 <suite name="eCommerce Suite Test">
   <!-- <parameter name="baseURL" value="https://jquery-drag-drop-demo.webflow.io/"></parameter> -->
   <!-- <parameter name="baseURL" value="https://www.saucedemo.com/v1/index.html"></parameter> -->
-  <!-- <parameter name="baseURL" value="https://jqueryui.com/resources/demos/resizable/default.html"></parameter> -->
-  <parameter name="baseURL" value="https://mui.com/x/react-date-pickers/time-clock/"></parameter>
+  <parameter name="baseURL" value="https://jqueryui.com/resources/demos/resizable/default.html"></parameter>
+  <!-- <parameter name="baseURL" value="https://mui.com/x/react-date-pickers/time-clock/"></parameter> -->
   
   <test name="Authentication Test" enabled="false">
     <!-- <parameter name="bgBefore" value="rgb(233, 233, 233)"></parameter> -->
@@ -20,8 +20,8 @@
     <classes>
       <!-- <class name="com.juaracoding.ecommerce.commons.RadioCheckboxTest"></class> -->
       <!-- <class name="com.juaracoding.ecommerce.commons.DropdownTest"></class> -->
-      <!-- <class name="com.juaracoding.ecommerce.commons.ResizableTest"></class> -->
-      <class name="com.juaracoding.ecommerce.commons.TimeClockTest"></class>
+      <class name="com.juaracoding.ecommerce.commons.ResizableTest"></class>
+      <!-- <class name="com.juaracoding.ecommerce.commons.TimeClockTest"></class> -->
     </classes>
   </test>
 </suite>

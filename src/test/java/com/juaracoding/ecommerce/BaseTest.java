@@ -17,6 +17,7 @@ public class BaseTest {
     @Parameters("baseURL")
     public void setDriver(String baseURL) {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         driver.get(baseURL);
     }
 

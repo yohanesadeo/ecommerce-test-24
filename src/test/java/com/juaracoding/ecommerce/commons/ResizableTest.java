@@ -1,19 +1,21 @@
 package com.juaracoding.ecommerce.commons;
 
+import org.openqa.selenium.interactions.MoveTargetOutOfBoundsException;
 import org.testng.annotations.Test;
 
 import com.juaracoding.ecommerce.BaseTest;
 import com.juaracoding.ecommerce.pages.ResizablePage;
+import com.juaracoding.ecommerce.providers.ResizableProvider;
 
-public class ResizableTest extends BaseTest{
-    
-    @Test
-    public void resizableTest() throws InterruptedException {
+public class ResizableTest extends BaseTest {
+
+    @Test(dataProvider = "externalResizeData", dataProviderClass = com.juaracoding.ecommerce.providers.ResizableProvider.class)
+    public void resizableTest(int xOffset, int yOffset) {
         ResizablePage resizablePage = new ResizablePage(getDriver());
-        resizablePage.resize(200,300);
+        resizablePage.resize(xOffset, yOffset);
 
-        String expectedHeight = 150 + 300 +"px";
-        String expectedWidth = 150 + 200 + "px";
+        String expectedHeight = 150 + yOffset + "px";
+        String expectedWidth = 150 + xOffset + "px";
 
         String actualHeight = resizablePage.getHeight();
         String actualWidth = resizablePage.getWidth();
@@ -21,7 +23,15 @@ public class ResizableTest extends BaseTest{
         assert expectedHeight.equals(actualHeight);
         assert expectedWidth.equals(actualWidth);
 
-        Thread.sleep(4000);
         getDriver().quit();
     }
+
+    @Test(dataProvider = "externalNegativeResizeData", dataProviderClass = ResizableProvider.class, expectedExceptions = {
+            MoveTargetOutOfBoundsException.class })
+    public void resizableNegativeTest(int xOffset, int yOffset) {
+        ResizablePage resizablePage = new ResizablePage(getDriver());
+        resizablePage.resize(xOffset, yOffset);
+        getDriver().quit();
+    }
+
 }
