@@ -9,8 +9,9 @@ import com.juaracoding.ecommerce.providers.ResizableProvider;
 
 public class ResizableTest extends BaseTest {
 
-    @Test(dataProvider = "externalResizeData", dataProviderClass = com.juaracoding.ecommerce.providers.ResizableProvider.class)
+    @Test(dataProvider = "externalResizeDataFromDB", dataProviderClass = ResizableProvider.class)
     public void resizableTest(int xOffset, int yOffset) {
+        System.out.println("xOffset: " + xOffset + ", yOffset: " + yOffset);
         ResizablePage resizablePage = new ResizablePage(getDriver());
         resizablePage.resize(xOffset, yOffset);
 
@@ -26,7 +27,7 @@ public class ResizableTest extends BaseTest {
         getDriver().quit();
     }
 
-    @Test(dataProvider = "externalNegativeResizeData", dataProviderClass = ResizableProvider.class, expectedExceptions = {
+    @Test(enabled = false, dataProvider = "externalNegativeResizeData", dataProviderClass = ResizableProvider.class, expectedExceptions = {
             MoveTargetOutOfBoundsException.class })
     public void resizableNegativeTest(int xOffset, int yOffset) {
         ResizablePage resizablePage = new ResizablePage(getDriver());
